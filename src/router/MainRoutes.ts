@@ -9,38 +9,29 @@ const MainRoutes = {
     {
       name: 'LandingPage',
       path: '/',
-      component: () => import('@/views/dashboard/DefaultDashboard.vue')
+      redirect: '/question'
     },
     {
-      name: 'Dashboard',
-      path: '/dashboard',
-      component: () => import('@/views/dashboard/DefaultDashboard.vue')
+      name: 'Question',
+      path: '/question',
+      children: [
+        {
+          name: 'QuestionIndex',
+          path: '',
+          component: () => import('@/views/question/index.vue')
+        },
+        {
+          name: 'QuestionFormCreate',
+          path: 'create',
+          component: () => import('@/views/question/form.vue')
+        },
+        {
+          name: 'QuestionDetail',
+          path: 'detail/:id',
+          component: () => import('@/views/question/detail.vue')
+        },
+      ]
     },
-    {
-      name: 'Typography',
-      path: '/typography',
-      component: () => import('@/views/typography/TypographyPage.vue')
-    },
-    {
-      name: 'Colors',
-      path: '/colors',
-      component: () => import('@/views/colors/ColorPage.vue')
-    },
-    {
-      name: 'Shadow',
-      path: '/shadow',
-      component: () => import('@/views/shadows/ShadowPage.vue')
-    },
-    {
-      name: 'Color',
-      path: '/icon/ant',
-      component: () => import('@/views/icons/AntDesignIcons.vue')
-    },
-    {
-      name: 'other',
-      path: '/sample-page',
-      component: () => import('@/views/StarterPage.vue')
-    }
   ]
 };
 
