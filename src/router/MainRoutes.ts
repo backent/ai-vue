@@ -30,6 +30,11 @@ const MainRoutes = {
           path: 'detail/:id',
           component: () => import('@/views/question/detail.vue')
         },
+        {
+          name: 'QuestionExam',
+          path: 'exam/:id',
+          component: () => import('@/views/question/exam.vue')
+        },
       ]
     },
   ]

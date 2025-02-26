@@ -13,10 +13,18 @@ import {
   ProfileOutlined,
   WalletOutlined
 } from '@ant-design/icons-vue';
-// import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/stores/auth';
+import { useRouter } from 'vue-router';
 
 const tab = ref(null);
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
+const router = useRouter()
+
+function logout() {
+  authStore.logout()
+  router.push('/login')
+
+}
 </script>
 
 <template>
@@ -78,7 +86,7 @@ const tab = ref(null);
               <v-list-item-title class="text-h6"> Billing</v-list-item-title>
             </v-list-item>
 
-            <v-list-item @click="() => {}" color="secondary" rounded="0">
+            <v-list-item @click="logout()" color="secondary" rounded="0">
               <template v-slot:prepend>
                 <LogoutOutlined :style="{ fontSize: '14px' }" class="mr-4" />
               </template>

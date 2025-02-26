@@ -3,8 +3,10 @@ import { onMounted, ref, shallowRef } from 'vue';
 
 import UiTitleCard from '@/components/shared/UiTitleCard.vue';
 import { useQuestionStore } from '@/stores/question';
+import { useAuthStore } from '@/stores/auth';
 
 const questionStore = useQuestionStore()
+const authStore = useAuthStore()
 const list = ref<any>([])
 
 onMounted(() => {
@@ -24,7 +26,7 @@ const projects = shallowRef([
 
 <template>
   <UiTitleCard title="Question list" class-name="px-0 pb-0 rounded-md">
-    <div class="d-flex justify-end mr-3 my-3">
+    <div v-if="authStore.isTeacher" class="d-flex justify-end mr-3 my-3">
       <router-link :to="{ name: 'QuestionFormCreate' }"><v-btn color="info">+ Create</v-btn></router-link>
     </div>
     <v-table class="bordered-table" hover density="comfortable">
@@ -39,7 +41,10 @@ const projects = shallowRef([
         <tr v-for="(item, index) in list" :key="item.id">
           <td>{{ index + 1 }}.</td>
           <td>{{ item.name }}</td>
-          <td><RouterLink :to="{ name: 'QuestionDetail', params: { id: item.id } } " class="text-secondary link-hover">See detail</RouterLink></td>
+          <td>
+            <RouterLink v-if="authStore.isTeacher" :to="{ name: 'QuestionDetail', params: { id: item.id } } " class="text-secondary link-hover">See detail</RouterLink>
+            <RouterLink v-if="authStore.isStudent" :to="{ name: 'QuestionExam', params: { id: item.id } } " class="text-secondary link-hover">Take an exam</RouterLink>
+          </td>
         </tr>
       </tbody>
     </v-table>

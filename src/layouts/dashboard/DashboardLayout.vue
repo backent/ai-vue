@@ -4,6 +4,13 @@ import LoaderWrapper from './LoaderWrapper.vue';
 import VerticalSidebarVue from './vertical-sidebar/VerticalSidebar.vue';
 import VerticalHeaderVue from './vertical-header/VerticalHeader.vue';
 import FooterPanel from './footer/FooterPanel.vue';
+import { useAuthStore } from '@/stores/auth';
+import { onMounted } from 'vue';
+
+const authStore = useAuthStore()
+onMounted(() => {
+  authStore.fetchCurrentUser()
+})
 </script>
 
 <template>
@@ -11,7 +18,6 @@ import FooterPanel from './footer/FooterPanel.vue';
     <v-app :class="[]">
       <VerticalSidebarVue />
       <VerticalHeaderVue />
-
       <v-main class="page-wrapper">
         <v-container fluid>
           <div>
