@@ -37,20 +37,20 @@ function logout() {
         <img src="@/assets/images/users/avatar-1.png" width="32" alt="Julia" />
       </v-avatar>
       <div>
-        <h6 class="text-h6 mb-0">JWT User</h6>
-        <p class="text-caption mb-0">UI/UX Designer</p>
+        <h6 class="text-h6 mb-0">{{ authStore.currentUser.username }}</h6>
+        <p class="text-caption mb-0">{{ authStore.currentUser.username }}</p>
       </div>
       <div class="ml-auto">
-        <v-btn variant="text" color="primary" rounded="sm" icon size="large" @click="(() => {})">
+        <v-btn variant="text" color="primary" rounded="sm" icon size="large" @click="logout">
           <LogoutOutlined :style="{ fontSize: '20px' }" />
         </v-btn>
       </div>
     </div>
-    <v-tabs v-model="tab" color="primary" grow>
+    <!-- <v-tabs v-model="tab" color="primary" grow>
       <v-tab value="111"> <UserOutlined class="v-icon--start" /> Profile </v-tab>
       <v-tab value="222"> <SettingOutlined class="v-icon--start" /> Setting </v-tab>
-    </v-tabs>
-    <perfect-scrollbar style="height: calc(100vh - 300px); max-height: 240px">
+    </v-tabs> -->
+    <!-- <perfect-scrollbar style="height: calc(100vh - 300px); max-height: 240px">
       <v-window v-model="tab">
         <v-window-item value="111">
           <v-list class="py-0" aria-label="profile list" aria-busy="true">
@@ -139,6 +139,6 @@ function logout() {
           </v-list>
         </v-window-item>
       </v-window>
-    </perfect-scrollbar>
+    </perfect-scrollbar> -->
   </div>
 </template>

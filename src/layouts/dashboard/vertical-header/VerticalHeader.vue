@@ -4,8 +4,8 @@ import { useCustomizerStore } from '../../../stores/customizer';
 import { MenuFoldOutlined, SearchOutlined, GithubOutlined } from '@ant-design/icons-vue';
 
 // dropdown imports
-import NotificationDD from './NotificationDD.vue';
-import Searchbar from './SearchBarPanel.vue';
+// import NotificationDD from './NotificationDD.vue';
+// import Searchbar from './SearchBarPanel.vue';
 import ProfileDD from './ProfileDD.vue';
 import { useAuthStore } from '@/stores/auth';
 
@@ -65,9 +65,9 @@ const authStore = useAuthStore()
     <!-- ---------------------------------------------- -->
     <!-- Search part -->
     <!-- ---------------------------------------------- -->
-    <v-sheet class="d-none d-lg-block" width="250">
+    <!-- <v-sheet class="d-none d-lg-block" width="250">
       <Searchbar />
-    </v-sheet>
+    </v-sheet> -->
 
     <!---/Search part -->
 
@@ -79,7 +79,7 @@ const authStore = useAuthStore()
     <!-- ---------------------------------------------- -->
     <!-- Github -->
     <!-- ---------------------------------------------- -->
-    <v-btn
+    <!-- <v-btn
       icon
       class="text-secondary hidden-sm-and-down d-flex"
       color="darkText"
@@ -89,12 +89,12 @@ const authStore = useAuthStore()
       target="_blank"
     >
       <GithubOutlined :style="{ fontSize: '16px' }" />
-    </v-btn>
+    </v-btn> -->
 
     <!-- ---------------------------------------------- -->
     <!-- Notification -->
     <!-- ---------------------------------------------- -->
-    <NotificationDD />
+    <!-- <NotificationDD /> -->
 
     <!-- ---------------------------------------------- -->
     <!-- User Profile -->
