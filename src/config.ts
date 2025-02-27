@@ -14,6 +14,7 @@ type AvailableRoutes = {
   get_by_id_question: string
   delete_by_id_question: string
   get_exam_by_id_question: string
+  get_exam_by_id: string
   post_exam: string
 
 }
@@ -31,6 +32,7 @@ const config: ConfigProps = {
     get_by_id_question: '/api/questions/:id',
     delete_by_id_question: '/api/questions/:id',
     get_exam_by_id_question: '/api/exams/:id',
+    get_exam_by_id: '/api/exams-preview/:id',
     post_exam: '/api/exams'
   }
 };

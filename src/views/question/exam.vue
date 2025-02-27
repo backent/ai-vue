@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import UiTitleCard from '@/components/shared/UiTitleCard.vue';
+import { useAuthStore } from '@/stores/auth';
 import { useExamStore } from '@/stores/exam';
 import { useQuestionStore } from '@/stores/question';
 import { computed, onMounted, ref } from 'vue';
@@ -15,6 +16,7 @@ type questionItem = {
 
 const route = useRoute()
 const router = useRouter()
+const authStore = useAuthStore()
 const examStore = useExamStore()
 const questions = ref<Array<questionItem>>([])
 const examAt = ref<any>('')
@@ -33,7 +35,8 @@ onMounted(() => {
 })
 
 function fetchData() {
-  examStore.takeExamByQuestionId(route.params.id.toString())
+  const fetchFunc = authStore.currentUser.username === "teacher" ? examStore.fetchExamByid : examStore.takeExamByQuestionId
+  fetchFunc(route.params.id.toString())
     .then(res => {
       questions.value = res.data.questions
       examAt.value = res.data.exam_at

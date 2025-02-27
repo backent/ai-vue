@@ -11,11 +11,18 @@ type questionItem = {
   explanation: string
 }
 
+type studentAttempt = {
+  id: number
+  name: string
+  score: number
+}
+
 type Detail = {
   name: string
   amount: number
   file_name: string
   result: Array<questionItem>
+  student_attempts: Array<studentAttempt>
 }
 
 const route = useRoute()
@@ -25,9 +32,11 @@ const detail = ref<Detail>({
   name: '',
   amount: 0,
   file_name: '',
-  result: []
+  result: [],
+  student_attempts: []
 })
 const dialogWarning = ref<boolean>(false)
+const dialogStudentAttempts = ref<boolean>(false)
 const snackbar = ref<boolean>(false)
 
 onMounted(() => {
@@ -99,6 +108,11 @@ function deleteQuestion() {
           </v-col>
         </v-row>
         <v-row>
+          <v-col cols="12" md="2">
+            <v-btn color="info" @click="dialogStudentAttempts = true">Student attempts</v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col>
             <UiTitleCard title="Generated questions" class-name="p-5 pt-5 rounded-md">
               <v-row v-for="(item, index) in detail.result" :key="item.question" class="mb-2">
@@ -139,5 +153,29 @@ function deleteQuestion() {
         ></v-btn>
       </template>
     </v-card>
+  </v-dialog>
+  <v-dialog v-model="dialogStudentAttempts">
+    <v-card
+      title="Confirmation"
+    >
+    <v-card-text>
+      <v-table class="bordered-table" hover density="comfortable">
+        <thead>
+          <tr>
+            <th>Student name</th>
+            <th>Score</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in detail.student_attempts" :key="item.id">
+            <td>{{ item.name }}</td>
+            <td>{{ item.score }}</td>
+            <td><router-link :to="{ name: 'QuestionExam', params: { id: item.id }}"><v-btn>See attempt</v-btn></router-link></td>
+          </tr>
+        </tbody>
+      </v-table>
+    </v-card-text>
+  </v-card>
   </v-dialog>
 </template>

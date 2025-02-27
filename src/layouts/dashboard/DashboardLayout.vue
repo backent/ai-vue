@@ -24,7 +24,7 @@ onMounted(() => {
             <!-- Loader start -->
             <LoaderWrapper />
             <!-- Loader end -->
-            <RouterView />
+            <RouterView v-if="!!authStore.currentUser.username" />
           </div>
         </v-container>
         <v-container fluid class="pt-0">
