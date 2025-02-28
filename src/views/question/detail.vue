@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import UiTitleCard from '@/components/shared/UiTitleCard.vue';
 import { useQuestionStore } from '@/stores/question';
+import { removeABCD } from '@/utils/helpers/formatter';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -121,7 +122,7 @@ function deleteQuestion() {
                 </v-col>
                 <v-col cols="12">
                   <v-radio-group disabled :model-value="mapAnswer<string>(item.options, item.answer)">
-                    <v-radio v-for="option in item.options" :label="option" :value="option" ></v-radio>
+                    <v-radio v-for="option in item.options" :label="removeABCD(option)" :value="option" ></v-radio>
                   </v-radio-group>
                 </v-col>
                 <v-col cols="12">

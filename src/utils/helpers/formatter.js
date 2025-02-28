@@ -18,3 +18,12 @@ export function formatWIB(date) {
 export function capitalizeFirstLetter(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
+
+export function removeABCD(text) {
+  const options = ["A", "B", "C", "D"]
+  let newText = text
+  options.forEach(option => {
+    newText = newText.replace(option + '. ', "")
+  });
+  return newText
+}
