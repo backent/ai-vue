@@ -66,7 +66,7 @@ function deleteQuestion() {
       dialogWarning.value = false
       setTimeout(() => {
         router.push('/')
-      }, 2000)
+      }, 1000)
     })
 }
 </script>
@@ -74,7 +74,7 @@ function deleteQuestion() {
   <v-row>
     <v-snackbar
         v-model="snackbar"
-        :timeout="2000"
+        :timeout="1000"
         color="success"
       >
         Question successfully deleted.

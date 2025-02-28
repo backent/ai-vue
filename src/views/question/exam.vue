@@ -59,7 +59,7 @@ function submit() {
       snackbar.value = true
       setTimeout(() => {
         router.go(0)
-      }, 2000)
+      }, 1000)
     })
 }
 
@@ -68,13 +68,13 @@ function submit() {
   <v-row>
     <v-snackbar
         v-model="snackbar"
-        :timeout="2000"
+        :timeout="1000"
         color="success"
       >
         Exam successfully submitted.
     </v-snackbar>
     <v-col>
-      <UiTitleCard title="Generated questions" class-name="p-5 pt-5 rounded-md">
+      <UiTitleCard title="Questions" class-name="p-5 pt-5 rounded-md">
         <v-row v-if="isExamTaken">
           <v-col>
             Final score: <span :class="{ 'text-success': finalScore >= 70, 'text-error': finalScore < 70}" class="font-weight-bold">{{  finalScore }}</span>
