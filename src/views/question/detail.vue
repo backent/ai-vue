@@ -21,6 +21,7 @@ type studentAttempt = {
 type Detail = {
   name: string
   amount: number
+  chapter?: string
   file_name: string
   result: Array<questionItem>
   student_attempts: Array<studentAttempt>
@@ -90,6 +91,14 @@ function deleteQuestion() {
           </v-col>
           <v-col cols="12" md="10">
             : {{ detail.name }}
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="2">
+            Chapter
+          </v-col>
+          <v-col cols="12" md="10">
+            : {{ detail.chapter }}
           </v-col>
         </v-row>
         <v-row>
