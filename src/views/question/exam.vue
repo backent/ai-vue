@@ -3,6 +3,7 @@ import UiTitleCard from '@/components/shared/UiTitleCard.vue';
 import { useAuthStore } from '@/stores/auth';
 import { useExamStore } from '@/stores/exam';
 import { useQuestionStore } from '@/stores/question';
+import { removeABCD } from '@/utils/helpers/formatter';
 import { computed, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -74,7 +75,7 @@ function submit() {
     </v-snackbar>
     <v-col>
       <UiTitleCard title="Generated questions" class-name="p-5 pt-5 rounded-md">
-        <v-row>
+        <v-row v-if="isExamTaken">
           <v-col>
             Final score: <span :class="{ 'text-success': finalScore >= 70, 'text-error': finalScore < 70}" class="font-weight-bold">{{  finalScore }}</span>
           </v-col>
@@ -85,7 +86,7 @@ function submit() {
           </v-col>
           <v-col cols="12">
             <v-radio-group v-model="item.user_answer" :disabled="isExamTaken">
-              <v-radio v-for="option in item.options" :class="{ 'bg-success': isExamTaken && getValFromAnswerOption(item.options, option) === item.answer, 'bg-error': isExamTaken && getValFromAnswerOption(item.options, option) !== item.answer && item.user_answer ===  getValFromAnswerOption(item.options, option)}" :label="option" :value="getValFromAnswerOption(item.options, option)" ></v-radio>
+              <v-radio v-for="option in item.options" :class="{ 'bg-success': isExamTaken && getValFromAnswerOption(item.options, option) === item.answer, 'bg-error': isExamTaken && getValFromAnswerOption(item.options, option) !== item.answer && item.user_answer ===  getValFromAnswerOption(item.options, option)}" :label="removeABCD(option)" :value="getValFromAnswerOption(item.options, option)" ></v-radio>
             </v-radio-group>
           </v-col>
           <v-col v-if="isExamTaken" cols="12">
