@@ -1,4 +1,4 @@
-import { deleteQuestionById, getAllQuestion, getQuestionById, postFormCreateQuestion } from "@/http/question";
+import { deleteQuestionById, getAllQuestion, getQuestionById, postFormCheckChapter, postFormCreateQuestion } from "@/http/question";
 import type { ResponseWeb } from "@/enum/response";
 import { defineStore } from "pinia";
 
@@ -15,6 +15,9 @@ export const useQuestionStore = defineStore('question', {
     },
     async removeQuestionById(id: string): Promise<ResponseWeb> {
       return deleteQuestionById(id)
+    },
+    async checkChapter(body: FormData): Promise<any> {
+      return postFormCheckChapter(body, () => {})
     }
   }
 })

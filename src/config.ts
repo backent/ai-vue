@@ -13,6 +13,7 @@ type AvailableRoutes = {
   get_all_question: string
   get_by_id_question: string
   delete_by_id_question: string
+  check_chapter_question: string
   get_exam_by_id_question: string
   get_exam_by_id: string
   post_exam: string
@@ -31,6 +32,7 @@ const config: ConfigProps = {
     get_all_question: '/api/questions',
     get_by_id_question: '/api/questions/:id',
     delete_by_id_question: '/api/questions/:id',
+    check_chapter_question: '/api/question-check-material',
     get_exam_by_id_question: '/api/exams/:id',
     get_exam_by_id: '/api/exams-preview/:id',
     post_exam: '/api/exams'

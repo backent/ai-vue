@@ -17,3 +17,7 @@ export function getQuestionById(id: string): Promise<ResponseWeb> {
 export function deleteQuestionById(id: string): Promise<ResponseWeb> {
   return http.deleteApi(config.routes.delete_by_id_question, { id })
 }
+
+export function postFormCheckChapter(body: FormData, progress: any): Promise<any> {
+  return http.postFormApiWithProgress(config.routes.check_chapter_question, body, {}, progress)
+}
