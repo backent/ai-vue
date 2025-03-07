@@ -8,6 +8,7 @@ import { useRouter } from 'vue-router';
 type Form = {
   name: string
   chapter?: string
+  language?: string
   amount: number
   file: File | null
 }
@@ -20,6 +21,7 @@ const snackbar = ref<boolean>(false)
 const form = ref<Form>({
   name: '',
   chapter: '',
+  language: '',
   amount: 0,
   file: null
 })
@@ -66,6 +68,7 @@ function toRequestObject(formInput: Form): CreateQuestionRequest | null {
   return {
     name: formInput.name,
     chapter: formInput.chapter,
+    language: formInput.language,
     amount: formInput.amount,
     file: formInput.file
   }
@@ -80,6 +83,7 @@ function submitQuestion() {
   const requestFormData = new FormData()
   requestFormData.append('name', request.name)
   requestFormData.append('chapter', request.chapter ?? '')
+  requestFormData.append('language', request.language ?? '')
   requestFormData.append('amount', request.amount.toString())
   requestFormData.append('file', request.file)
   
@@ -189,6 +193,21 @@ watch(() => form.value.file, () => {
           </v-row>
           <v-row>
             <v-col>
+              <v-label>Target audience (optional)</v-label>
+              <v-select
+                v-model="form.language"
+                :items="['SD', 'SMP', 'SMA']"
+                hide-details="auto"
+                clearable
+                variant="outlined"
+                class="mt-2"
+                color="primary"
+              ></v-select>
+    
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
               <v-label>Analyze from file (PDF)*</v-label>
               <v-file-input
                 v-model="form.file"
@@ -199,7 +218,7 @@ watch(() => form.value.file, () => {
                 color="primary"
                 placeholder="0"
                 accept=".pdf"
-                :disabled="onCheckingChapter"
+                :disabled="onCheckingChapter || isLoading"
               ></v-file-input>
     
             </v-col>
@@ -215,7 +234,7 @@ watch(() => form.value.file, () => {
                 class="mt-2"
                 color="primary"
                 placeholder="BAB 2"
-                :disabled="onCheckingChapter"
+                :disabled="onCheckingChapter || isLoading"
                 :hint="hintChapter"
                 persistent-hint
               >

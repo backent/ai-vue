@@ -22,6 +22,7 @@ type Detail = {
   name: string
   amount: number
   chapter?: string
+  language?: string
   file_name: string
   result: Array<questionItem>
   student_attempts: Array<studentAttempt>
@@ -95,10 +96,18 @@ function deleteQuestion() {
         </v-row>
         <v-row>
           <v-col cols="12" md="2">
+            Target audience
+          </v-col>
+          <v-col cols="12" md="10">
+            : {{ detail.language || '-' }}
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="2">
             Chapter
           </v-col>
           <v-col cols="12" md="10">
-            : {{ detail.chapter }}
+            : {{ detail.chapter || '-' }}
           </v-col>
         </v-row>
         <v-row>
